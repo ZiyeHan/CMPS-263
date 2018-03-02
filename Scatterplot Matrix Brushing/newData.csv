@@ -1,101 +1,101 @@
-"gender","race/ethnicity","parental level of education","lunch","test preparation course","math score","reading score","writing score"
-"female","group D","some high school","standard","completed","51","69","69"
-"female","group B","associate's degree","standard","none","79","92","95"
-"female","group C","some high school","standard","completed","87","100","97"
-"female","group D","some college","free/reduced","completed","65","75","79"
-"female","group B","some high school","standard","none","68","73","69"
-"female","group C","high school","standard","completed","70","82","79"
-"female","group B","associate's degree","free/reduced","none","69","88","79"
-"female","group E","some college","free/reduced","none","85","86","89"
-"female","group D","high school","standard","completed","60","70","77"
-"male","group B","some college","standard","completed","58","70","67"
-"female","group A","bachelor's degree","standard","none","52","58","54"
-"female","group D","high school","standard","none","63","65","68"
-"male","group C","master's degree","free/reduced","completed","82","85","81"
-"male","group C","some high school","standard","completed","86","85","87"
-"male","group C","some college","free/reduced","completed","44","54","59"
-"male","group B","high school","standard","none","37","40","32"
-"female","group B","associate's degree","standard","completed","71","87","85"
-"male","group C","associate's degree","standard","none","70","73","73"
-"male","group B","master's degree","free/reduced","completed","62","58","67"
-"female","group C","bachelor's degree","standard","none","61","68","64"
-"female","group D","some college","free/reduced","none","47","55","52"
-"male","group B","associate's degree","standard","completed","88","88","88"
-"male","group C","associate's degree","free/reduced","completed","75","79","83"
-"female","group E","associate's degree","standard","none","100","100","100"
-"female","group B","associate's degree","free/reduced","none","48","66","61"
-"female","group D","bachelor's degree","free/reduced","none","74","72","80"
-"male","group B","some college","free/reduced","completed","59","62","66"
-"male","group C","some high school","free/reduced","none","82","83","76"
-"female","group B","some high school","standard","completed","77","75","76"
-"female","group B","associate's degree","free/reduced","completed","67","86","84"
-"male","group E","some high school","free/reduced","completed","86","87","84"
-"male","group C","some high school","standard","completed","61","62","61"
-"female","group C","high school","free/reduced","none","42","68","62"
-"female","group B","high school","standard","completed","68","79","79"
-"male","group C","high school","free/reduced","none","45","36","32"
-"female","group E","master's degree","standard","completed","80","78","81"
-"male","group C","high school","free/reduced","none","76","84","72"
-"male","group B","bachelor's degree","free/reduced","completed","54","65","66"
-"male","group D","master's degree","standard","none","89","77","72"
-"male","group A","high school","standard","none","65","58","57"
-"male","group E","associate's degree","standard","none","82","68","62"
-"female","group D","some high school","standard","completed","78","85","87"
-"female","group B","associate's degree","free/reduced","completed","62","76","76"
-"male","group D","some college","standard","completed","51","66","67"
-"male","group C","associate's degree","standard","none","81","69","67"
-"female","group A","some high school","standard","none","60","67","66"
-"male","group D","some college","standard","completed","74","77","76"
-"female","group C","some high school","free/reduced","none","57","64","61"
-"male","group D","some college","free/reduced","completed","71","69","69"
-"male","group A","high school","standard","none","72","66","64"
-"female","group D","associate's degree","free/reduced","none","68","82","83"
-"male","group C","some high school","standard","none","74","77","65"
-"male","group C","some college","free/reduced","none","50","55","45"
-"male","group C","high school","standard","none","80","83","75"
-"male","group B","high school","standard","completed","73","64","68"
-"female","group D","some college","free/reduced","none","59","67","63"
-"female","group D","some college","standard","none","75","87","86"
-"male","group C","associate's degree","free/reduced","none","64","55","53"
-"male","group E","master's degree","standard","completed","100","100","100"
-"male","group B","high school","standard","completed","79","77","75"
-"male","group C","some college","free/reduced","none","43","37","41"
-"female","group C","some college","standard","completed","79","83","86"
-"male","group D","some college","standard","completed","78","66","70"
-"male","group A","associate's degree","free/reduced","completed","56","64","65"
-"female","group C","associate's degree","standard","none","55","65","67"
-"female","group D","bachelor's degree","standard","none","77","79","77"
-"female","group D","some high school","standard","none","76","92","84"
-"male","group B","high school","standard","completed","67","72","67"
-"male","group B","some high school","free/reduced","none","52","59","48"
-"male","group D","bachelor's degree","free/reduced","completed","57","56","61"
-"male","group C","some high school","standard","none","68","60","61"
-"male","group B","associate's degree","standard","none","66","60","61"
-"male","group D","some college","standard","none","77","67","63"
-"female","group D","some college","standard","none","54","63","68"
-"female","group C","some college","free/reduced","none","65","71","63"
-"female","group A","some high school","free/reduced","none","55","66","70"
-"female","group E","bachelor's degree","free/reduced","completed","57","59","68"
-"male","group D","bachelor's degree","standard","completed","79","74","77"
-"female","group B","bachelor's degree","standard","completed","47","65","63"
-"male","group B","high school","free/reduced","none","34","35","30"
-"female","group A","high school","standard","completed","96","100","100"
-"male","group E","some college","free/reduced","completed","77","76","65"
-"male","group D","some high school","standard","none","72","63","55"
-"female","group A","associate's degree","standard","none","89","95","90"
-"male","group D","some high school","free/reduced","none","56","59","47"
-"female","group D","associate's degree","standard","none","53","63","59"
-"female","group C","associate's degree","free/reduced","completed","40","58","59"
-"female","group E","associate's degree","free/reduced","none","69","73","73"
-"female","group E","bachelor's degree","standard","none","71","85","80"
-"male","group B","associate's degree","free/reduced","none","60","66","59"
-"male","group B","some college","standard","completed","71","58","59"
-"male","group C","some high school","standard","completed","89","71","79"
-"female","group B","high school","free/reduced","completed","67","87","80"
-"female","group B","some college","free/reduced","none","48","68","60"
-"female","group B","high school","standard","none","56","63","59"
-"female","group C","high school","standard","none","72","68","71"
-"male","group C","high school","standard","none","61","57","58"
-"male","group D","high school","standard","none","72","68","66"
-"male","group B","some college","standard","none","47","45","41"
-"female","group D","master's degree","standard","none","88","97","100"
+math score,reading score,writing score,gender
+51,69,69,female
+79,92,95,female
+87,100,97,female
+65,75,79,female
+68,73,69,female
+70,82,79,female
+69,88,79,female
+85,86,89,female
+60,70,77,female
+58,70,67,male
+52,58,54,female
+63,65,68,female
+82,85,81,male
+86,85,87,male
+44,54,59,male
+37,40,32,male
+71,87,85,female
+70,73,73,male
+62,58,67,male
+61,68,64,female
+47,55,52,female
+88,88,88,male
+75,79,83,male
+100,100,100,female
+48,66,61,female
+74,72,80,female
+59,62,66,male
+82,83,76,male
+77,75,76,female
+67,86,84,female
+86,87,84,male
+61,62,61,male
+42,68,62,female
+68,79,79,female
+45,36,32,male
+80,78,81,female
+76,84,72,male
+54,65,66,male
+89,77,72,male
+65,58,57,male
+82,68,62,male
+78,85,87,female
+62,76,76,female
+51,66,67,male
+81,69,67,male
+60,67,66,female
+74,77,76,male
+57,64,61,female
+71,69,69,male
+72,66,64,male
+68,82,83,female
+74,77,65,male
+50,55,45,male
+80,83,75,male
+73,64,68,male
+59,67,63,female
+75,87,86,female
+64,55,53,male
+100,100,100,male
+79,77,75,male
+43,37,41,male
+79,83,86,female
+78,66,70,male
+56,64,65,male
+55,65,67,female
+77,79,77,female
+76,92,84,female
+67,72,67,male
+52,59,48,male
+57,56,61,male
+68,60,61,male
+66,60,61,male
+77,67,63,male
+54,63,68,female
+65,71,63,female
+55,66,70,female
+57,59,68,female
+79,74,77,male
+47,65,63,female
+34,35,30,male
+96,100,100,female
+77,76,65,male
+72,63,55,male
+89,95,90,female
+56,59,47
+53,63,59,female
+40,58,59,female
+69,73,73,female
+71,85,80,female
+60,66,59,male
+71,58,59,male
+89,71,79,male
+67,87,80,female
+48,68,60,female
+56,63,59,female
+72,68,71,female
+61,57,58,male
+72,68,66,male
+47,45,41,male
+88,97,100,female

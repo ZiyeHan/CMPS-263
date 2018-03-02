@@ -31,6 +31,7 @@ d3.csv("flowers.csv", function (error, data) {
 
     traits.forEach(function (trait) {
         domainByTrait[trait] = d3.extent(data, function (d) {
+            console.log("trait:" + trait + " value:" + d[trait]);
             return d[trait];
         });
         //Set value according to key(trait)
@@ -62,7 +63,8 @@ d3.csv("flowers.csv", function (error, data) {
         })
         .each(function (d) {
             console.log(domainByTrait[d]);
-            x.domain(domainByTrait[d]);  //Each 4 domainByTrait[d] has a sub-axis
+            //x.domain(domainByTrait[d]);  //Each 4 domainByTrait[d] has a sub-axis
+            x.domain([0,100]]);  //Each 4 domainByTrait[d] has a sub-axis
             d3.select(this).call(xAxis);
         });
 
@@ -75,46 +77,53 @@ d3.csv("flowers.csv", function (error, data) {
         })
         .each(function (d) {
             console.log(domainByTrait[d]);
-            y.domain(domainByTrait[d]);  //Each 4 domainByTrait[d] has a sub-axis
+            //y.domain(domainByTrait[d]);  //Each 4 domainByTrait[d] has a sub-axis
+            y.domain([0,100]]);  //Each 4 domainByTrait[d] has a sub-axis
             d3.select(this).call(yAxis);
         });
 
-    var cell = svg.selectAll(".cell")
-        .data(cross(traits, traits))
+    var cell = svg.selectAll(".cell") //Each big square is a "cell"
+        .data(cross(traits, traits)) //Cross is a function, setting field for each "circle"
         .enter().append("g")
         .attr("class", "cell")
         .attr("transform", function (d) {
+            // n = 4
+            // i = row index count of a cell (see cross() function)
+            // j = column index count of a cell (see cross() function)
             return "translate(" + (n - d.i - 1) * size + "," + d.j * size + ")";
         })
-        .each(plot);
+        .each(plot); //For each cell, add a rectangle and circles inside
 
-    // Titles for the diagonal.
+    // Text titles at the diagonal.
     cell.filter(function (d) {
             return d.i === d.j;
         }).append("text")
-        .attr("x", padding)
-        .attr("y", padding)
-        .attr("dy", ".71em")
+        .attr("x", padding) //Location of text
+        .attr("y", padding) //Location of text
+        .attr("dy", ".71em") 
         .text(function (d) {
-            return d.x;
+            return d.x; //Text
         });
 
-    cell.call(brush);
+    cell.call(brush); //Call brush on each cell
 
+    //For each cell, add a rectangle and 150 circles inside (Every cell has 150 circles)
     function plot(p) {
         var cell = d3.select(this);
 
-        x.domain(domainByTrait[p.x]);
-        y.domain(domainByTrait[p.y]);
+//        x.domain(domainByTrait[p.x]);
+//        y.domain(domainByTrait[p.y]);
+        x.domain([0,100]);
+        y.domain([0,100]);
 
-        cell.append("rect")
-            .attr("class", "frame")
+        cell.append("rect")  //Add a rectangle around each cell 
+            .attr("class", "frame") 
             .attr("x", padding / 2)
             .attr("y", padding / 2)
             .attr("width", size - padding)
             .attr("height", size - padding);
 
-        cell.selectAll("circle")
+        cell.selectAll("circle")  //Define the location and style of each little circle
             .data(data)
             .enter().append("circle")
             .attr("cx", function (d) {
@@ -130,22 +139,23 @@ d3.csv("flowers.csv", function (error, data) {
     }
 
     var brushCell;
-
     // Clear the previously-active brush, if any.
     function brushstart(p) {
-        if (brushCell !== this) {
+        if (brushCell !== this) { 
             d3.select(brushCell).call(brush.move, null);
-            brushCell = this;
-            x.domain(domainByTrait[p.x]);
-            y.domain(domainByTrait[p.y]);
-        }
+            brushCell = this; //Set lower right end the brushCell 
+//            x.domain(domainByTrait[p.x]); //x domain
+//            y.domain(domainByTrait[p.y]); //y domain
+            x.domain([0,100]); //x domain
+            y.domain([0,100]); //y domain
+        } 
     }
 
-    // Highlight the selected circles.
+    // Drag, highlight the selected circles.
     function brushmove(p) {
         var e = d3.brushSelection(this);
         svg.selectAll("circle").classed("hidden", function (d) {
-            return !e ?
+            return !e ? //If a circle is in my selection area, then it is not hidden 
                 false :
                 (
                     e[0][0] > x(+d[p.x]) || x(+d[p.x]) > e[1][0] ||
@@ -154,24 +164,26 @@ d3.csv("flowers.csv", function (error, data) {
         });
     }
 
-    // If the brush is empty, select all circles.
+    // If the brush is end, select all currently hidden circles and show them
     function brushend() {
+        console.log("brushend");
         var e = d3.brushSelection(this);
-        if (e === null) svg.selectAll(".hidden").classed("hidden", false);
+        if (e === null) svg.selectAll(".hidden").classed("hidden", false); // Show all currently hidden circles
     }
 });
 
-function cross(a, b) {
+function cross(a, b) { //a = traits, b = traits
     var c = [],
         n = a.length,
         m = b.length,
         i, j;
-    for (i = -1; ++i < n;)
-        for (j = -1; ++j < m;) c.push({
-            x: a[i],
-            i: i,
-            y: b[j],
-            j: j
-        });
+    for (i = -1; ++i < n;)  //Loop trait length n
+        for (j = -1; ++j < m;)  //Loop trait length m
+            c.push({ //Push object to array
+                x: a[i], //Row value
+                i: i, //Row index
+                y: b[j], //Column value
+                j: j  //Column index
+            });
     return c;
 }
