@@ -63,8 +63,7 @@ d3.csv("flowers.csv", function (error, data) {
         })
         .each(function (d) {
             console.log(domainByTrait[d]);
-            //x.domain(domainByTrait[d]);  //Each 4 domainByTrait[d] has a sub-axis
-            x.domain([0,100]]);  //Each 4 domainByTrait[d] has a sub-axis
+            x.domain(domainByTrait[d]);  //Each 4 domainByTrait[d] has a sub-axis
             d3.select(this).call(xAxis);
         });
 
@@ -77,8 +76,7 @@ d3.csv("flowers.csv", function (error, data) {
         })
         .each(function (d) {
             console.log(domainByTrait[d]);
-            //y.domain(domainByTrait[d]);  //Each 4 domainByTrait[d] has a sub-axis
-            y.domain([0,100]]);  //Each 4 domainByTrait[d] has a sub-axis
+            y.domain(domainByTrait[d]);  //Each 4 domainByTrait[d] has a sub-axis
             d3.select(this).call(yAxis);
         });
 
@@ -111,10 +109,8 @@ d3.csv("flowers.csv", function (error, data) {
     function plot(p) {
         var cell = d3.select(this);
 
-//        x.domain(domainByTrait[p.x]);
-//        y.domain(domainByTrait[p.y]);
-        x.domain([0,100]);
-        y.domain([0,100]);
+        x.domain(domainByTrait[p.x]);
+        y.domain(domainByTrait[p.y]);
 
         cell.append("rect")  //Add a rectangle around each cell 
             .attr("class", "frame") 
@@ -144,10 +140,8 @@ d3.csv("flowers.csv", function (error, data) {
         if (brushCell !== this) { 
             d3.select(brushCell).call(brush.move, null);
             brushCell = this; //Set lower right end the brushCell 
-//            x.domain(domainByTrait[p.x]); //x domain
-//            y.domain(domainByTrait[p.y]); //y domain
-            x.domain([0,100]); //x domain
-            y.domain([0,100]); //y domain
+            x.domain(domainByTrait[p.x]); //x domain
+            y.domain(domainByTrait[p.y]); //y domain
         } 
     }
 
