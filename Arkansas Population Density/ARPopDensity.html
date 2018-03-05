@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Arkansas Population Density</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
+</head>
+
+<body>
+    <h1 align="center"><b>Arkansas Population Density, 2018</b></h1>
+    <svg width="1300" height="1100"></svg>
+
+    <button id="changeLegendColor" onclick="changeLegendColor()">Change Legend Color</button>
+    <button id="toggleStateBoundary" onclick="toggleStateBoundary()">Toggle State Boundary</button>
+    <button id="toggleCensusTractBoundary" onclick="toggleCensusTractBoundary()">Toggle Census Tract Boundary</button>
+
+    <script>
+        var svg = d3.select("svg"),
+            width = +svg.attr("width"),
+            height = +svg.attr("height");
+
+        var path = d3.geoPath();
+
+        var color = d3.scaleThreshold()
+            .domain([1, 10, 50, 200, 500, 1000, 2000, 4000])
+            .range(d3.schemeOrRd[9]);
+        var colorCount = 0;
+
+        var x = d3.scaleSqrt()
+            .domain([0, 4500])
+            .rangeRound([440, 950]);
+
+        var g = svg.append("g")
+            .attr("class", "key")
+            .attr("transform", "translate(270,760)");
+        
+        d3.select("#changeLegendColor")
+            .attr("style", "height:35px;width:250px;position:absolute;left:47%;bottom:52%");
+            
+        d3.select("#toggleStateBoundary")
+            .attr("style", "height:35px;width:250px;position:absolute;left:1%;bottom:40%");
+        
+        d3.select("#toggleCensusTractBoundary")
+            .attr("style", "height:35px;width:250px;position:absolute;left:20%;bottom:40%");
+
+        g.selectAll("rect")
+            .data(color.range().map(function(d) {
+                d = color.invertExtent(d);
+                if (d[0] == null) d[0] = x.domain()[0];
+                if (d[1] == null) d[1] = x.domain()[1];
+                return d;
+            }))
+            .enter().append("rect")
+            .attr("height", 10)
+            .attr("x", function(d) {
+                return x(d[0]);
+            })
+            .attr("width", function(d) {
+                return x(d[1]) - x(d[0]);
+            })
+            .attr("fill", function(d) {
+                return color(d[0]);
+            });
+
+        g.append("text")
+            .attr("class", "caption")
+            .attr("x", x.range()[0])
+            .attr("y", -6)
+            .attr("fill", "#000")
+            .attr("text-anchor", "start")
+            .attr("font-size", "15px")
+            .attr("font-weight", "bold")
+            .text("Population per square mile");
+
+        g.call(d3.axisBottom(x)
+                .tickSize(15)
+                .tickValues(color.domain()))
+            .select(".domain")
+            .remove();
+
+        var tractCount = 0;
+        var stateCount = 0;
+        d3.json("ar-topo.json", function(error, topology) {
+            if (error) throw error;
+
+            svg.append("g")
+                .selectAll("path")
+                .data(topojson.feature(topology, topology.objects.tracts).features)
+                .enter().append("path")
+                .attr("fill", function(d) {
+                    return color(d.properties.density);
+                })
+                .attr("d", path);
+
+            svg.append("path")
+                .datum(topojson.feature(topology, topology.objects.counties))
+                .attr("fill", "none")
+                .attr("stroke", "#000")
+                .attr("stroke-opacity", 0.3)
+                .attr("d", path);
+
+        });
+
+        function changeLegendColor() {
+            var newColor = d3.scaleThreshold()
+                .domain([1, 10, 50, 200, 500, 1000, 2000, 4000]);
+
+            if (colorCount % 2 == 0) {
+                newColor.range(d3.schemeBlues[9]);
+            } else {
+                newColor.range(d3.schemeOrRd[9]);
+            }
+
+            colorCount = colorCount + 1;
+
+            svg.selectAll("rect").attr("fill", function(d) {
+                return newColor(d[0]);
+            });
+
+            svg.selectAll("path").attr("fill", function(d) {
+                return newColor(d.properties.density);
+            });
+        }
+
+        function toggleCensusTractBoundary() {
+            if (tractCount % 2 == 0) {
+                d3.json("ar-topo.json", function(error, topology) {
+                    if (error) throw error;
+                    svg.append("path")
+                        .datum(topojson.feature(topology, topology.objects.tracts))
+                        .attr("id", "tractPath")
+                        .attr("fill", "none")
+                        .attr("stroke", "#000")
+                        .attr("stroke-opacity", 0.3)
+                        .attr("stroke-width", 3)
+                        .attr("d", path);
+                });
+            } else {
+                d3.select("#tractPath").remove();
+            }
+            tractCount = tractCount + 1;
+        }
+        
+        function toggleStateBoundary(){
+            if (stateCount % 2 == 0) {
+                d3.json("ar-border-topo.json", function(error, topology) {
+                    if (error) throw error;
+                    svg.append("path")
+                        .datum(topojson.feature(topology, topology.objects.counties))
+                        .attr("id", "stateBorderPath")
+                        .attr("fill", "none")
+                        .attr("stroke", "#000")
+                        .attr("stroke-opacity", 0.3)
+                        .attr("stroke-width", 5)
+                        .attr("d", path);
+                });
+            } else {
+                d3.select("#stateBorderPath").remove();
+            }
+            stateCount = stateCount + 1;
+        }
+
+    </script>
+
+    <div class="info">
+        <h2>Github Link: </h2>
+        <h2>Created by: Ziye Han </h2>
+        <h2>Instructor: Suresh Lodha</h2>
+        <h2>CMPS 263: Data programming for Visualization</h2>
+        <h2>Winter 2018</h2>
+    </div>
+</body>
